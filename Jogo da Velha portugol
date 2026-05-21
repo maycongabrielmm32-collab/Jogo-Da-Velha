@@ -1,0 +1,106 @@
+programa
+{
+	inclua biblioteca Util --> u	
+	inclua biblioteca Tipos --> t
+
+	funcao inteiro menu (inteiro opcao){
+
+    		faca{
+        		escreva("\n=====================================\n")
+        		escreva("_________JOGO DA VELHA_______________\n")
+        		escreva("=====================================\n")
+        		escreva(" Digite [1] Jogar\n")
+        		escreva(" Digite [2] Verificar Placar\n")
+        		escreva(" Digite [3] Sair do Jogo\n")
+        		escreva("=====================================\n")
+      		leia(opcao)
+      		se (opcao  < 1 ou opcao > 3){
+      			limpa() 
+        			escreva("Opção inválida, digite novamente: ")
+        			u.aguarde(500)
+      		}
+    		}
+    		enquanto(opcao  < 1 ou opcao > 3)
+    		limpa()
+    		retorne opcao
+    		
+	}
+
+	funcao jogo(inteiro marcador){
+
+		cadeia nome1, nome2
+		caracter velha[3][3], opcao
+		inteiro l, c, i = 0, encerrartabuleiro = 0, contadorvitoria1 = 0, contadorvitoria2 = 0
+
+		para (l=0; l<3; l++){
+			para (c=0; c<3; c++){
+				velha[l][c] = t.inteiro_para_caracter(i)
+				i++
+			}
+		}
+
+		escreva("jogador 1, digite seu nome")
+		leia(nome1)
+		escreva("\njogador 2, digite seu nome")
+		leia(nome2)
+		
+		enquanto(encerrartabuleiro == 0){
+		escreva("\n",velha[0][0]," | " ,velha[0][1], " | " , velha[0][2],"\n")
+		escreva("\n",velha[1][0]," | " ,velha[1][1], " | " , velha[1][2],"\n")
+		escreva("\n",velha[2][0]," | " ,velha[2][1], " | " , velha[2][2],"\n")
+		escreva(nome1, " Digite o número que deseja ocupar")
+		leia (opcao)
+			para (l=0; l<3; l++){
+				para (c=0; c<3; c++){
+					se(velha[l][c] == opcao){
+						velha[l][c] = 'X'
+					}
+				}
+			}			
+
+		escreva(nome2, " Digite o número que deseja ocupar")
+		leia (opcao)
+			para (l=0; l<3; l++){
+				para (c=0; c<3; c++){
+					se(velha[l][c] == opcao){
+						velha[l][c] = '0'
+					}
+				}
+			}
+
+			se (velha[0][0] == 'X' e velha[1][1] == 'X' e velha[2][2] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				u.aguarde(1000)
+				contadorvitoria1++
+				encerrartabuleiro++
+			} senao se (velha[0][2] == 'X' e velha[1][1] == 'X' e velha[2][0] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				contadorvitoria1++
+			} senao se (velha[0][0] == 'X' e velha[1][0] == 'X' e velha[2][0] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				contadorvitoria1++
+			} senao se (velha[0][1] == 'X' e velha[1][1] == 'X' e velha[2][1] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				contadorvitoria1++
+			} senao se (velha[0][2] == 'X' e velha[1][2] == 'X' e velha[2][2] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				contadorvitoria1++
+			}
+		limpa()
+		
+		}
+		
+	}
+
+	funcao inicio()
+	{
+		inteiro opcao = 0, marcador = 0
+		opcao = menu(opcao)
+		se(opcao == 1){
+			jogo(marcador)
+		}
+		escreva(opcao)
+		
+
+	}
+}
