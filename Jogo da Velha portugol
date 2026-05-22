@@ -85,10 +85,55 @@ programa
 			} senao se (velha[0][2] == 'X' e velha[1][2] == 'X' e velha[2][2] == 'X') {
 				escreva("VITÓRIA JOGADOR ",nome1)
 				contadorvitoria1++
+			} senao se (velha[0][0] == 'X' e velha[0][1] == 'X' e velha[0][2] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				contadorvitoria1++
+				
+			}senao se (velha[1][0] == 'X' e velha[1][1] == 'X'  e velha[1][2] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				contadorvitoria1++
+			}senao se (velha[2][0] == 'X' e velha[2][1] == 'X' e  velha[2][2] == 'X') {
+				escreva("VITÓRIA JOGADOR ",nome1)
+				contadorvitoria1++
 			}
 		limpa()
 		
-		}
+	         }
+	         se(velha[0][0] == '0' e velha[1][1] == '0' e velha [2][2] == '0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	u.aguarde(1000)
+	         	contadorvitoria2++
+	         	encerrartabuleiro++
+	         } senao se(velha[0][2] == '0' e velha [1][1] == '0' e velha [2][0] =='0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	contadorvitoria2++
+	         }senao se (velha[0][0] == '0' e velha[1][0] == '0' e velha [2][0] =='0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	contadorvitoria2++
+	         }senao se(velha[0][1] == '0' e velha [1][1] == '0' e velha [2][1] =='0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	contadorvitoria2++
+	         }senao se(velha[0][2] == '0' e velha[1][2] == '0' e velha [2][2] == '0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	contadorvitoria2++
+	         }senao se(velha[0][0] == '0' e velha[0][1] == '0' e velha [0][2] =='0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	contadorvitoria2++
+	         }senao se (velha[0][1] == '0'e velha[1][1] == '0' e velha [2][1] == '0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	contadorvitoria2++
+	         }senao se(velha[0][2] == '0' e velha [1][2] == '0' e velha [2][2] == '0'){
+	         	escreva("VITÓRIA JOGADOR ",nome2)
+	         	contadorvitoria2++
+	         }
+	         limpa()
+	         
+	         	
+	         
+	         	
+	        
+
+		
 		
 	}
 
