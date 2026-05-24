@@ -195,7 +195,7 @@ programa
 		escreva("\nJogador 2 como O tem ", p2, " vitorias ")
 		escreva("\nO total de velha foi: ", velha, " vezes")
 		escreva("\n=====================================\n")
-		u.aguarde(2000) 
+		u.aguarde(4000) 
 		limpa()                                                                                                                                                                                                                       
 	}
 
@@ -227,7 +227,3 @@ programa
 		}
 	}
 }
-
-
-
-
