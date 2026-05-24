@@ -1,3 +1,4 @@
+//MAYCON GABRIEL ALVES DA SILVA E JOSUE 
 programa
 {
 	inclua biblioteca Util --> u	
@@ -26,11 +27,11 @@ programa
     		
 	}
 
-	funcao jogo(inteiro marcador){
+	funcao inteiro jogo(inteiro marcador){
 
 		cadeia nome1, nome2
 		caracter velha[3][3], opcao
-		inteiro l, c, i = 0, encerrartabuleiro = 0, retornarvitoria = 0, opcaoinvalida = 0
+		inteiro l, c, i = 0, encerrartabuleiro = 0, retornarvitoria = 0, opcaoinvalida = 0, contarjogadas = 0, deuvelha = 0
 
 		//PREENCHE MATRIZ DE 0 A 8 COMO CARACTER
 		para (l=0; l<3; l++){
@@ -40,9 +41,9 @@ programa
 			}
 		}
 
-		escreva("jogador 1, digite seu nome")
+		escreva("jogador 1, digite seu nome: ")
 		leia(nome1)
-		escreva("\njogador 2, digite seu nome")
+		escreva("\njogador 2, digite seu nome: ")
 		leia(nome2)
 		
 		enquanto(encerrartabuleiro == 0){
@@ -59,38 +60,21 @@ programa
 						se(velha[l][c] == opcao){
 							velha[l][c] = 'X'
 							opcaoinvalida = 1
+							contarjogadas++
+							limpa()
 							//colcoar uma condicao aq pra indicar q foi verdadeiro, verificar la em baixo depois
 						}
 					}
 				}
 				se(opcaoinvalida == 0){
 					escreva("\nOpção Inválida!!!")
+					u.aguarde(1000)
+					limpa()
 				}
 			}enquanto(opcaoinvalida == 0)
 
 			opcaoinvalida = 0
-					
-			faca{
-			//JOGADOR 2 MARCA O 0
-				escreva("\n",velha[0][0]," | " ,velha[0][1], " | " , velha[0][2],"\n")
-				escreva("\n",velha[1][0]," | " ,velha[1][1], " | " , velha[1][2],"\n")
-				escreva("\n",velha[2][0]," | " ,velha[2][1], " | " , velha[2][2],"\n")		
-				escreva(nome2, " Digite o número que deseja ocupar")
-				leia (opcao)			
-				para (l=0; l<3; l++){
-					para (c=0; c<3; c++){
-						se(velha[l][c] == opcao){
-							velha[l][c] = '0'
-							opcaoinvalida = 1
-							//colcoar uma condicao aq pra indicar q foi verdadeiro, verificar la em baixo depois
-						}
-					}
-				}
-				se(opcaoinvalida == 0){
-					escreva("\nOpção Inválida!!!")
-				}
-			}enquanto(opcaoinvalida == 0)
-			
+							
 			//CONFERIR VITORIA JOGADOR 1:
 			//CONFERE TODAS AS LINHAS
 			para (l=0; l<3; l++){
@@ -99,6 +83,8 @@ programa
 					u.aguarde(1000)
 					retornarvitoria = 1
 					encerrartabuleiro++
+					deuvelha = 1
+					opcaoinvalida = 2
 				}
 			}
 			//CONFERE TODAS AS COLUNAS
@@ -108,6 +94,8 @@ programa
 					u.aguarde(1000)
 					retornarvitoria = 1
 					encerrartabuleiro++
+					deuvelha = 1
+					opcaoinvalida = 2
 				}
 			}
 			//CONFERE AS DUAS DIAGONAIS
@@ -116,59 +104,126 @@ programa
 				u.aguarde(1000)
 				retornarvitoria = 1
 				encerrartabuleiro++
+				deuvelha = 1
+				opcaoinvalida = 2
 			} senao se (velha[0][2] == 'X' e velha[1][1] == 'X' e velha[2][0] == 'X') {
 				escreva("VITÓRIA JOGADOR ",nome1)
 				u.aguarde(1000)
 				retornarvitoria = 1
 				encerrartabuleiro++
+				deuvelha = 1
+				opcaoinvalida = 2
 			} 
 
-			//CONFERIR VITORIA JOGADOR 2:
-			//CONFERE TODAS AS LINHAS
-			para (l=0; l<3; l++){
-				se (velha[l][0] == '0' e velha[l][1] == '0' e velha[l][2] == '0'){
-					escreva("VITÓRIA JOGADOR ",nome2)
+			se (contarjogadas == 9 e deuvelha == 0){
+					escreva("!!DEU VELHA!!")
 					u.aguarde(1000)
-					retornarvitoria = 2
-					encerrartabuleiro++
-				}
-			}
-			//CONFERE TODAS AS COLUNAS
-			para (c=0; c<3; c++){
-				se (velha[0][c] == '0' e velha[1][c] == '0' e velha[2][c] == '0'){
-					escreva("VITÓRIA JOGADOR ",nome2)
-					u.aguarde(1000)
-					retornarvitoria = 2
-					encerrartabuleiro++
-				}
-			}
-			//CONFERE AS DUAS DIAGONAIS
-			se (velha[0][0] == '0' e velha[1][1] == '0' e velha[2][2] == '0') {
-				escreva("VITÓRIA JOGADOR ",nome2)
-				u.aguarde(1000)
-				retornarvitoria = 2
-				encerrartabuleiro++
-			} senao se (velha[0][2] == '0' e velha[1][1] == '0' e velha[2][0] == '0') {
-				escreva("VITÓRIA JOGADOR ",nome2)
-				u.aguarde(1000)
-				retornarvitoria = 2
-				encerrartabuleiro++
+					retornarvitoria = 3
+					encerrartabuleiro++	
+					opcaoinvalida = 2
 			}
 
-	      
+			se(opcaoinvalida !=2){
+				faca{
+					//JOGADOR 2 MARCA o O
+					escreva("\n",velha[0][0]," | " ,velha[0][1], " | " , velha[0][2],"\n")
+					escreva("\n",velha[1][0]," | " ,velha[1][1], " | " , velha[1][2],"\n")
+					escreva("\n",velha[2][0]," | " ,velha[2][1], " | " , velha[2][2],"\n")		
+					escreva(nome2, " Digite o número que deseja ocupar")
+					leia (opcao)			
+					para (l=0; l<3; l++){
+						para (c=0; c<3; c++){
+							se(velha[l][c] == opcao){
+								velha[l][c] = 'O'
+								opcaoinvalida = 1
+								contarjogadas++
+								limpa()
+								//colcoar uma condicao aq pra indicar q foi verdadeiro, verificar la em baixo depois
+							}
+						}
+					}
+					se(opcaoinvalida == 0){
+						escreva("\nOpção Inválida!!!")
+						u.aguarde(1000)
+						limpa()
+					}
+				}enquanto(opcaoinvalida == 0)
+	
+				opcaoinvalida = 0
+
+				//CONFERIR VITORIA JOGADOR 2:
+				//CONFERE TODAS AS LINHAS
+				para (l=0; l<3; l++){
+					se (velha[l][0] == 'O' e velha[l][1] == 'O' e velha[l][2] == 'O'){
+						escreva("VITÓRIA JOGADOR ",nome2)
+						u.aguarde(1000)
+						retornarvitoria = 2
+						encerrartabuleiro++
+					}
+				}
+				//CONFERE TODAS AS COLUNAS
+				para (c=0; c<3; c++){
+					se (velha[0][c] == 'O' e velha[1][c] == 'O' e velha[2][c] == 'O'){
+						escreva("VITÓRIA JOGADOR ",nome2)
+						u.aguarde(1000)
+						retornarvitoria = 2
+						encerrartabuleiro++
+					}
+				}
+					//CONFERE AS DUAS DIAGONAIS
+				se (velha[0][0] == 'O' e velha[1][1] == 'O' e velha[2][2] == 'O') {
+					escreva("VITÓRIA JOGADOR ",nome2)
+					u.aguarde(1000)
+					retornarvitoria = 2
+					encerrartabuleiro++
+				} senao se (velha[0][2] == 'O' e velha[1][1] == 'O' e velha[2][0] == 'O') {
+					escreva("VITÓRIA JOGADOR ",nome2)
+					u.aguarde(1000)
+					retornarvitoria = 2
+					encerrartabuleiro++
+				}
+			}
+
 	         limpa()       
 		}
+	retorne retornarvitoria
+	}
+
+	funcao verplacar(inteiro p1, inteiro p2, inteiro velha){
+		escreva("\n=====================================\n")
+		escreva("\nJogador 1 como X tem ", p1, " vitorias ")
+		escreva("\nJogador 2 como O tem ", p2, " vitorias ")
+		escreva("\nO total de velha foi: ", velha, " vezes")
+		escreva("\n=====================================\n")
+		u.aguarde(2000) 
+		limpa()                                                                                                                                                                                                                       
 	}
 
 	funcao inicio()
 	{
-		inteiro opcao = 0, marcador = 0
-		opcao = menu(opcao)
-		se(opcao == 1){
-			jogo(marcador)
-		}
-		
+		inteiro opcao = 0, marcador = 0, placar = 0, p1 = 0, p2 = 0, velha = 0, partidas = 0, sairmenu = 0
 
+		enquanto(sairmenu == 0){
+			opcao = menu(opcao)
+			se(opcao == 1){
+				placar = jogo(marcador)
+				se(placar == 1){
+					p1++
+				}senao se(placar == 2){
+					p2++
+				}senao se(placar == 3){
+					velha++
+				}
+			}
+			se(opcao == 2){
+				verplacar(p1, p2, velha)
+			}
+			se(opcao == 3){
+				partidas = p1 + p2 + velha
+				escreva("o número de partidas totais foi: ", partidas)
+				escreva("\no número de velhas totais foi: ", velha)
+				sairmenu = 1
+			}
+		}
 	}
 }
-
